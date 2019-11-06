@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>State</title>
+</head>
+<body>
+  <h2>{{ state.name }}</h2>
+<p>Population: {{ state.population }}</p>
+  <h3>Cities in {{ state.abbrev }}</h3>
+  {% for city in state.city_set.all %}
+    <li><a href="{% url 'states:city_detail' city.id %}">{{ city.name }}</a></li>
+{% endfor %}
+  <br><br>
+  <a href="{% url 'states:index'  %}">Home</a>
+</body>
+</html>

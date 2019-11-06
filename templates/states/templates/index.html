@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>States</title>
+</head>
+<body>
+  <h2>All States</h2>
+  <ul>
+    {% for s in states %}
+    <li><a href="{% url 'states:state_detail' s.id %}">{{ s.name }}</a></li>
+    {% endfor %}
+  </ul>
+  <br><br>
+
+  <h3><a href="{% url 'states:city_list' %}">All Cities</a></h3>
+
+  <br>
+
+  <form action="{% url 'states:index' %}" method="post">
+    <h3>Add new state: </h3>
+    {% csrf_token %}
+    {{ state_form.as_p }}
+    <input type="submit" Add State>
+  </form>
+</body>
+</html>

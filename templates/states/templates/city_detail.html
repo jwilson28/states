@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cities</title>
+</head>
+<body>
+<h1>{{ city.name}}</h1>
+
+<ul>
+  <li>Population: {{ city.population }}</li>
+  <li>Abbr: {{ city.abbrev }} </li>
+  <li>State: {{ city.state.name }}</li>
+</ul>
+<br>
+<br>
+<a href="{% url 'states:index' %}">Home</a>
+</body>
+</html>

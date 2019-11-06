@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cities</title>
+</head>
+<body>
+<h1>A list of all cities in the app</h1>
+<ul>
+  {% for city in cities %}
+    <li><a href="{% url 'states:city_detail' city.id %}">{{ city.name }} ({{ city.state.abbrev }})</a></li>
+  {% endfor %}
+</ul>
+<br><br>
+<h3>Add a city</h3>
+<form action="{% url 'states:city_list' %}" method="post">
+  {% csrf_token %}
+  {{ city_form.as_p }}
+  <input type="submit" value="Add city">
+</form>
+<br><br>
+
+<a href="{% url 'states:index' %}">Home</a>
+  </body>
+</html>
