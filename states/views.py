@@ -1,19 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import State, City
+from .models import State, City, Activity
 from .forms import StateForm, CityForm
 
 
 def index(request):
     states = State.objects.all()
+    activities = Activity.objects.all()
     if request.method == 'POST':
         state_form = StateForm(request.POST)
         if state_form.is_valid():
             state_form.save()
             state_form = StateForm()
-            return render(request, 'states/templates/index.html', {'states':states, 'state_form':state_form})
+            return render(request, 'states/templates/index.html', {'states':states, 'state_form':state_form, 'activities':activities})
     state_form = StateForm()
-    return render(request, 'states/templates/index.html', {'states': states, 'state_form': state_form})
+    return render(request, 'states/templates/index.html', {'states': states, 'state_form': state_form, 'activities':activities})
 
 def city_list(request):
     cities = City.objects.all().order_by('-name')
@@ -45,6 +46,7 @@ def city_detail(request, city_id):
         'city':city,
         'edit_city_form':edit_city_form,
     }
+
     if edit_city_form.is_valid():
         edit_city_form.save()
     return render(request, 'states/templates/city_detail.html', context)

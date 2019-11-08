@@ -23,5 +23,10 @@
     {{ state_form.as_p }}
     <input type="submit" Add State>
   </form>
+
+  <h2>Listing Activities</h2>
+{% for a in activities %}
+  {{ a.activity_type }}
+{% endfor %}
 </body>
 </html>
