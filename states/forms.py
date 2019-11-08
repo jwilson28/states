@@ -9,6 +9,13 @@ class StateForm(ModelForm):
 
 
 class CityForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CityForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            self.fields['state'].disabled = True
+
     class Meta:
         model = City
         fields = ['name', 'abbrev', 'population', 'state']

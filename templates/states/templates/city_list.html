@@ -16,6 +16,8 @@
 <form action="{% url 'states:city_list' %}" method="post">
   {% csrf_token %}
   {{ city_form.as_p }}
+  <li style="list-style: none"><b>State not in list?</b>  <a href="{% url 'states:index' %}">Add State First</a></li>
+  <br>
   <input type="submit" value="Add city">
 </form>
 <br><br>

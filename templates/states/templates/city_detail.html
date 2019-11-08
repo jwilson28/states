@@ -13,6 +13,13 @@
   <li>State: {{ city.state.name }}</li>
 </ul>
 <br>
+<form action="{% url 'states:city_detail' city.id %}" method="post">
+  {% csrf_token %}
+  <h3>Edit City</h3>
+  {{ edit_city_form.as_p }}
+  <input type="input" value="Edit">
+  <br>
+</form>
 <br>
 <a href="{% url 'states:index' %}">Home</a>
 </body>

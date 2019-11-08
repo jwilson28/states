@@ -7,11 +7,22 @@
 <body>
   <h2>{{ state.name }}</h2>
 <p>Population: {{ state.population }}</p>
+  {% if not state.city_set.all  %}
+  <h4>No cities added to {{ state.abbrev }} yet</h4>
+  {% else %}
   <h3>Cities in {{ state.abbrev }}</h3>
   {% for city in state.city_set.all %}
     <li><a href="{% url 'states:city_detail' city.id %}">{{ city.name }}</a></li>
 {% endfor %}
+  {% endif %}
   <br><br>
+  <form action="{% url 'states:state_detail' state.id %}" method="post">
+    <h3>Edit State</h3>
+    {% csrf_token %}
+    {{ edit_state_form.as_p }}
+    <input type="submit" value="Edit">
+  </form>
+  <br>
   <a href="{% url 'states:index'  %}">Home</a>
 </body>
 </html>
